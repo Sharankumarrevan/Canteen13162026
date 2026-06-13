@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Canteen Management System</title>
+
+  <!-- TAILWIND CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-white overflow-hidden">
+
+ 
+
+  <!-- MAIN WRAPPER -->
+  <div class="bg-white overflow-y-hidden">
+
+    <div class="w-20"></div>
+
+    <div class="flex flex-wrap">
+
+      <div class="w-full pt-0 flex-wrap h-screen pl-[0px]">
+
+        <div class="flex flex-col bg-[#f3f4f8] h-full relative shadow-[0_48px_100px_0_rgba(17,12,46,0.15)]">
+
+          <!-- HEADER -->
+          <header class="w-full bg-gradient-to-r from-blue-50 via-white to-blue-50">
+
+            <div
+              class="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 border-b border-blue-800">
+
+              <!-- LEFT -->
+              <div class="flex items-center gap-4">
+
+                <div class="flex items-center">
+
+                  <img src="logoiddion.png" alt="Logo"
+                    class="w-[76px] h-[40px] bg-white p-1 rounded-lg object-contain" />
+
+                </div>
+
+                <div class="h-6 w-px bg-blue-400/30"></div>
+
+                <div class="flex items-center gap-2">
+
+                  <div
+                    class="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
+
+                    <span class="text-white text-lg font-bold">C</span>
+
+                  </div>
+
+                  <div class="flex flex-col">
+
+                    <span class="text-white font-bold text-sm leading-tight">
+                      Canteen
+                    </span>
+
+                    <span class="text-blue-100 text-xs">
+                      Management System
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- RIGHT -->
+              <div class="flex items-center gap-3">
+
+                <button
+                  class="flex items-center gap-2 pl-1 pr-1 py-1 rounded-full bg-white/10 hover:bg-white/20 text-blue-50 border border-white/30 shadow-sm transition-colors">
+
+                  <div
+                    class="w-8 h-8 rounded-full bg-white flex items-center justify-center ring-2 ring-blue-400/50">
+
+                    <span class="text-blue-600 font-bold text-sm">
+                      A
+                    </span>
+
+                  </div>
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </header>
+
+          <!-- TOP NAV -->
+          <nav
+            class="sticky top-0 z-50 w-full flex items-center gap-0 px-6 py-0 bg-gradient-to-r from-blue-50 to-white border-b border-blue-200 overflow-x-auto shadow-sm">
+
+            <a id="top-org"
+              class="text-sm font-normal py-2 border-b-2 text-blue-600 border-blue-500 px-2 inline-flex items-center gap-1">
+              Organization
+            </a>
+
+            <a id="top-canteen"
+              class="text-sm font-normal py-2 border-b-2 text-gray-900 hover:text-blue-600 border-transparent px-2 inline-flex items-center gap-1">
+              Canteen
+            </a>
+
+          </nav>
+
+
+
+          <!-- PAGE CONTENT -->
+          <div class="overflow-y-auto h-full">
+
+            <div class="px-12">
+
+              <!-- PAGE TITLE -->
+              <div class="backdrop-blur border-b border-slate-200 px-8 py-4">
+
+                <div class="flex items-center justify-between gap-4">
+
+                  <div class="flex items-center gap-4">
+
+                    <button
+                      class="inline-flex items-center justify-center h-9 w-9 rounded-md text-blue-600 hover:bg-blue-50 transition-colors">
+
+                      ←
+
+                    </button>
+
+                    <div>
+
+                      <h1 class="text-xl font-semibold text-slate-900">
+                        Canteen Meals Configuration
+                      </h1>
+
+                      <p class="text-sm text-slate-500">
+                        Manage meals, subsidies, timings and employee meal
+                        consumption.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- MAIN SECTION -->
+              <div class="max-w-7xl mx-auto scroll-smooth">
+
+                <div class="flex gap-6">
+
+                  <!-- LEFT MENU -->
+                  <div class="sticky top-4 self-start">
+
+                    <aside class="w-64 h-full overflow-y-auto overflow-x-hidden">
+
+             <!-- ORG SIDEBAR -->
+               <nav id="org-sidebar" class="p-4 space-y-3">
+
+              <button data-module="0"
+                class="menu-btn w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium bg-blue-100 text-blue-900">
+                🏢 Organization
+              </button>
+               </nav>
+
+
+                 <nav id="canteen-sidebar" class="p-4 space-y-3 hidden">
+                        <button data-module="1"
+                          class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium bg-blue-100 text-blue-900">
+                          🍽 Meal Details
+                        </button>
+                      </nav>
+
+                    </aside>
+
+                  </div>
+
+                  <!-- RIGHT CONTENT -->
+                  <main class="flex-1 min-w-0">
+
+                    <div class="pt-4 pb-4">
+
+      <div id="module-0" class="module">
+
+  <div class="rounded-lg bg-white border border-slate-200 shadow-sm">
+
+<!-- HEADER -->
+<div class="border-b border-slate-200 px-6 py-4">
+
+  <h2 class="text-lg font-semibold text-slate-900">
+    Organization Setup
+  </h2>
+
+  <p class="text-sm text-slate-500">
+    Configure organization, subsidiary and location details
+  </p>
+
+</div>
+
+<div class="p-6">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+    <!-- ORGANIZATION CODE -->
+    <div>
+
+      <label class="text-sm font-medium text-slate-700">
+        Organization Code
+      </label>
+
+      <input
+        id="organizationCode"
+        data-section="organization"
+        data-field="organizationCode"
+        type="text"
+        placeholder="ORG-001"
+        class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+    </div>
+
+    <!-- ORGANIZATION NAME -->
+    <div>
+
+      <label class="text-sm font-medium text-slate-700">
+        Organization Name
+      </label>
+
+      <input
+        id="organizationName"
+        data-section="organization"
+        data-field="organizationName"
+        type="text"
+        placeholder="ABC Pvt Ltd"
+        class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+    </div>
+
+    <!-- SUBSIDIARY CODE -->
+    <div>
+
+      <label class="text-sm font-medium text-slate-700">
+        Subsidiary Code
+      </label>
+
+      <input
+        id="subsidiaryCode"
+        data-section="subsidiary"
+        data-field="subsidiaryCode"
+        type="text"
+        placeholder="SUB-001"
+        class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+    </div>
+
+    <!-- SUBSIDIARY NAME -->
+    <div>
+
+      <label class="text-sm font-medium text-slate-700">
+        Subsidiary Name
+      </label>
+
+      <input
+        id="subsidiaryName"
+        data-section="subsidiary"
+        data-field="subsidiaryName"
+        type="text"
+        placeholder="South Unit"
+        class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+    </div>
+
+    <!-- LOCATION CODE -->
+    <div>
+
+      <label class="text-sm font-medium text-slate-700">
+        Location Code
+      </label>
+
+      <input
+        id="locationCode"
+        data-section="location"
+        data-field="locationCode"
+        type="text"
+        placeholder="LOC-001"
+        class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+    </div>
+
+    <!-- LOCATION NAME -->
+    <div>
+
+      <label class="text-sm font-medium text-slate-700">
+        Location Name
+      </label>
+
+      <input
+        id="locationName"
+        data-section="location"
+        data-field="locationName"
+        type="text"
+        placeholder="Bangalore"
+        class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+    </div>
+
+  </div>
+
+</div>
+
+                         <div class="border-t px-6 py-4 flex justify-end">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm">Save</button>
+                          </div> 
+
+  </div>
+
+</div>
+
+
+                                              <!-- MODULE 3: only one visible at a time -->
+                      <div id="module-1" class="module hidden">
+
+                        <!-- CARD -->
+                        <div class="rounded-lg bg-white border border-slate-200 shadow-sm">
+
+                          <!-- CARD HEADER -->
+                          <div
+                            class="border-b border-slate-200 px-6 py-4 flex justify-between items-center">
+
+                            <div>
+
+                              <h2 class="text-lg font-semibold text-slate-900">
+                                Add Meal Details
+                              </h2>
+
+                              <p class="text-sm text-slate-500">
+                                Configure meals served in the canteen
+                              </p>
+
+                            </div>
+
+                          </div>
+
+                          <!-- FORM -->
+                          <div class="p-6">
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+                              <div>
+
+                                <label class="text-sm font-medium text-slate-700">
+                                  Meal Title
+                                </label>
+
+                                <select 
+                                  id="mealTitle"
+                                  data-section="mealDetails"
+                                  data-field="mealTitle"
+                                  class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+                                  <option>Breakfast</option>
+                                  <option>Lunch</option>
+                                  <option>Dinner</option>
+
+                                </select>
+
+                              </div>
+
+                              <div>
+
+                                <label class="text-sm font-medium text-slate-700">
+                                  From Time
+                                </label>
+
+                                <input 
+                                  id="fromTime"
+                                  data-section="mealDetails"
+                                  data-field="fromTime"
+                                  type="time"
+                                  class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+                              </div>
+
+                              <div>
+
+                                <label class="text-sm font-medium text-slate-700">
+                                  To Time
+                                </label>
+
+                                <input 
+                                  id="toTime"
+                                  data-section="mealDetails"
+                                  data-field="toTime"
+                                  type="time"
+                                  class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+                              </div>
+
+                              <div>
+
+                                <label class="text-sm font-medium text-slate-700">
+                                  Rate
+                                </label>
+
+                                <input 
+                                  id="rate"
+                                  data-section="mealDetails"
+                                  data-field="rate"
+                                  type="number"
+                                  placeholder="120"
+                                  class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+                              </div>
+
+                              <div>
+
+                                <label class="text-sm font-medium text-slate-700">
+                                  Subsidy Percentage
+                                </label>
+
+                                <input 
+                                  id="subsidyPercentage"
+                                  data-section="mealDetails"
+                                  data-field="subsidyPercentage"
+                                  type="number"
+                                  placeholder="15.5"
+                                  class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+
+                              </div>
+
+                              <div>
+
+                                <label class="text-sm font-medium text-slate-700">
+                                  Day Of Week
+                                </label>
+
+                                <select 
+                                  id="dayOfWeek"
+                                  data-section="mealDetails"
+                                  data-field="dayOfWeek"
+                                  class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+                                  <option>Monday</option>
+                                  <option>Tuesday</option>
+                                  <option>Wednesday</option>
+                                  <option>Thursday</option>
+                                  <option>Friday</option>
+
+                                </select>
+
+                              </div>
+
+                            </div>
+
+                            <!-- TEXTAREA -->
+                            <div class="mt-6">
+
+                              <label class="text-sm font-medium text-slate-700">
+                                Meals Served
+                              </label>
+
+                              <textarea 
+                                id="mealsServed"
+                                data-section="mealDetails"
+                                data-field="mealsServed"
+                                rows="4" 
+                                placeholder="Idli, Dosa, Rice, Sambhar"
+                                class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-3"></textarea>
+
+                            </div>
+
+                          </div>
+
+                        
+                          <!-- card footer save -->
+                       
+                           <div class="border-t px-6 py-4 flex justify-end">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm">Save</button>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    
+                      <!-- Bottom navigation: Back (left), Save Details and Continue (right) -->
+                      <!-- Bottom Navigation -->
+                       <div class="flex items-center justify-between mt-6">
+                             <!-- BACK BUTTON -->
+                           <button
+                             id="nav-back"
+                             type="button"
+                             class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none px-3 py-1.5 h-8 text-sm bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 disabled:opacity-100 disabled:text-gray-700">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="h-4 w-4 mr-1">      <path d="m12 19-7-7 7-7"></path>     <path d="M19 12H5"></path></svg>
+                             Back
+                           </button>
+
+                         <!-- RIGHT BUTTON -->
+                          <div class="flex items-center gap-3">
+                        <button
+                           id="nav-next"
+                           type="button"
+                           class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 px-4 py-2 h-9 text-sm bg-blue-600 hover:bg-blue-700 text-white">
+
+      Continue
+
+     <svg xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="lucide lucide-arrow-right h-4 w-4 ml-1">
+
+    <path d="M5 12h14"></path>
+    <path d="m12 5 7 7-7 7"></path>
+
+  </svg>
+
+</button>
+
+  </div>
+
+</div>
+
+                    </div>
+
+                  </main>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script src="app.js"></script>
+</body>
+
+</html>
+ 
