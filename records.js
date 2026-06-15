@@ -115,7 +115,7 @@ onclick="deleteRecord('${record._id}')">
 function editRecord(id){
 
     window.location.href =
-    `index.html?id=${id}`;
+    `add-record.html?id=${id}`;
 
 }
 

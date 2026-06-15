@@ -370,7 +370,7 @@ console.log("After Meal Details");
     );
 
     window.location.href =
-        "./records.html";
+        "./index.html";
 
 }
 catch(err){
