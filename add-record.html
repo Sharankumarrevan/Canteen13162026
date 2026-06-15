@@ -31,7 +31,7 @@
           <header class="w-full bg-gradient-to-r from-blue-50 via-white to-blue-50">
 
             <div
-              class="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 border-b border-blue-800">
+              class="flex items-center justify-between px-3 md:px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 border-b border-blue-800">
 
               <!-- LEFT -->
               <div class="flex items-center gap-4">
@@ -39,7 +39,7 @@
                 <div class="flex items-center">
 
                   <img src="logoiddion.png" alt="Logo"
-                    class="w-[76px] h-[40px] bg-white p-1 rounded-lg object-contain" />
+                    class="w-[60px] h-[35px] md:w-[76px] md:h-[40px] bg-white p-1 rounded-lg object-contain" />
 
                 </div>
 
@@ -95,7 +95,7 @@
 
           <!-- TOP NAV -->
           <nav
-            class="sticky top-0 z-50 w-full flex items-center gap-0 px-6 py-0 bg-gradient-to-r from-blue-50 to-white border-b border-blue-200 overflow-x-auto shadow-sm">
+            class="sticky top-0 z-50 w-full flex items-center gap-0 px-3 md:px-6 py-0 overflow-x-auto bg-gradient-to-r from-blue-50 to-white border-b border-blue-200 overflow-x-auto shadow-sm">
 
             <a id="top-org"
               class="text-sm font-normal py-2 border-b-2 text-blue-600 border-blue-500 px-2 inline-flex items-center gap-1">
@@ -114,10 +114,10 @@
           <!-- PAGE CONTENT -->
           <div class="overflow-y-auto h-full">
 
-            <div class="px-12">
+            <div class="px-3 md:px-12">
 
               <!-- PAGE TITLE -->
-              <div class="backdrop-blur border-b border-slate-200 px-8 py-4">
+              <div class="backdrop-blur border-b border-slate-200 px-3 md:px-8 py-4">
 
                 <div class="flex items-center justify-between gap-4">
 
@@ -152,12 +152,12 @@
               <!-- MAIN SECTION -->
               <div class="max-w-7xl mx-auto scroll-smooth">
 
-                <div class="flex gap-6">
+                <div class="flex flex-col md:flex-row gap-6">
 
                   <!-- LEFT MENU -->
                   <div class="sticky top-4 self-start">
 
-                    <aside class="w-64 h-full overflow-y-auto overflow-x-hidden">
+                    <aside class="w-full md:w-64 h-full overflow-y-auto overflow-x-hidden">
 
              <!-- ORG SIDEBAR -->
                <nav id="org-sidebar" class="p-4 space-y-3">
@@ -489,7 +489,7 @@
                     
                       <!-- Bottom navigation: Back (left), Save Details and Continue (right) -->
                       <!-- Bottom Navigation -->
-                       <div class="flex items-center justify-between mt-6">
+                       <div class="flex flex-col md:flex-row items-center justify-between gap-3 mt-6">
                              <!-- BACK BUTTON -->
                            <button
                              id="nav-back"
