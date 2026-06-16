@@ -9,15 +9,23 @@ params.get("id");
 (function () {
 
     const canteenData = {
-    organization: {},
-    subsidiary: {},
-    location: {},
-    mealDetails: {}
-    // mealTimings: {},
-    // subsidy: {},
-    // employeeConsumption: {},
-    // specialDays: {}
-   };
+        organization: {},
+        subsidiary: {},
+        location: {},
+        mealDetails: {},
+        // here to change
+        mealConfig: {
+            dayOfWeek: "",
+            mealTitle: "",
+            mealsServed: "",
+            fromTime: "",
+            toTime: "",
+            rate: 0,
+            subsidyPercentage: 0
+        },
+        employeeConsumption: {},
+        specialDays: {}
+    };
 
     const topOrg =
         document.getElementById("top-org");
@@ -25,11 +33,28 @@ params.get("id");
     const topCanteen =
         document.getElementById("top-canteen");
 
+    const topCanteenData =
+        document.getElementById("top-canteen-data");
+
+    const topEmployee =
+        document.getElementById("top-employee");
+
+    const topEmployeeData =
+        document.getElementById("top-employee-data");
+
     const orgSidebar =
         document.getElementById("org-sidebar");
 
     const canteenSidebar =
         document.getElementById("canteen-sidebar");
+
+    const canteenSidebarData = document.getElementById("canteen-sidebar-data");
+
+    const employeeSidebar =
+        document.getElementById("employee-sidebar");
+
+    const employeeSidebarData =
+        document.getElementById("employee-sidebar-data");
 
     const backBtn =
         document.getElementById("nav-back");
@@ -68,7 +93,7 @@ params.get("id");
                 : "visible";
 
         nextBtn.innerText =
-            currentModule === 1
+            currentModule === 4  // last module index (next module employee_meals_consumption -> 3)
                 ? "Save"
                 : "Next";
 
@@ -76,51 +101,51 @@ params.get("id");
 
     function updateTopTabs() {
 
-        if (currentModule === 0) {
+       if (currentModule === 0) {
 
-            topOrg.classList.add(
-                "text-blue-600",
-                "border-blue-500"
-            );
+        topOrg.classList.add(
+            "text-blue-600",
+            "border-blue-500"
+        );
 
-            topOrg.classList.remove(
-                "text-gray-900",
-                "border-transparent"
-            );
+        topOrg.classList.remove(
+            "text-gray-900",
+            "border-transparent"
+        );
 
-            topCanteen.classList.remove(
-                "text-blue-600",
-                "border-blue-500"
-            );
+        topCanteen.classList.remove(
+            "text-blue-600",
+            "border-blue-500"
+        );
 
-            topCanteen.classList.add(
-                "text-gray-900",
-                "border-transparent"
-            );
+        topCanteen.classList.add(
+            "text-gray-900",
+            "border-transparent"
+        );
 
-        } else {
+    } else {
 
-            topCanteen.classList.add(
-                "text-blue-600",
-                "border-blue-500"
-            );
+        topCanteen.classList.add(
+            "text-blue-600",
+            "border-blue-500"
+        );
 
-            topCanteen.classList.remove(
-                "text-gray-900",
-                "border-transparent"
-            );
+        topCanteen.classList.remove(
+            "text-gray-900",
+            "border-transparent"
+        );
 
-            topOrg.classList.remove(
-                "text-blue-600",
-                "border-blue-500"
-            );
+        topOrg.classList.remove(
+            "text-blue-600",
+            "border-blue-500"
+        );
 
-            topOrg.classList.add(
-                "text-gray-900",
-                "border-transparent"
-            );
+        topOrg.classList.add(
+            "text-gray-900",
+            "border-transparent"
+        );
 
-        }
+    }       
 
     }
 
@@ -308,86 +333,225 @@ params.get("id");
 );
 
 nextBtn.addEventListener("click", () => {
+console.log("Current Module:", currentModule);
+if (currentModule === 0) {
 
-    if (currentModule < 1) {
+    const orgCode =
+    document.getElementById("organizationCode");
 
-        showModule(currentModule + 1);
+    const subCode =
+    document.getElementById("subsidiaryCode");
 
-        if (currentModule >= 1) {
+    const locCode =
+    document.getElementById("locationCode");
 
-            canteenSidebar.classList.remove(
-                "hidden"
-            );
-
-            orgSidebar.classList.add(
-                "hidden"
-            );
-
-        }
-
+    if(orgCode.value.trim() === ""){
+        orgCode.classList.add("border-red-500");
+        orgCode.focus();
+        return;
     }
-    else {
 
-        console.log(
-            "FINAL DATA",
-            JSON.stringify(
-                canteenData,
-                null,
-                2
-            )
+    if(subCode.value.trim() === ""){
+        subCode.classList.add("border-red-500");
+        subCode.focus();
+        return;
+    }
+
+    if(locCode.value.trim() === ""){
+        locCode.classList.add("border-red-500");
+        locCode.focus();
+        return;
+    }
+
+    showModule(1);
+
+    canteenSidebar.classList.remove("hidden");
+    orgSidebar.classList.add("hidden");
+
+    return;
+}
+
+if(currentModule === 1){
+
+    const mealTitle =
+    document.getElementById("mealTitle");
+
+    if(mealTitle.value.trim() === ""){
+
+        mealTitle.classList.add("border-red-500");
+
+        document
+        .getElementById("mealTitleError")
+        .classList.remove("hidden");
+
+        mealTitle.focus();
+
+        return;
+    }
+
+    showModule(2);
+    return;
+}
+//  change here
+if(currentModule === 2){
+
+    const mealTitle =
+    document.getElementById(
+        "mealTitle"
+    );
+
+    if(
+        mealTitle.value.trim() === ""
+    ){
+
+        mealTitle.classList.add(
+            "border-red-500"
         );
 
-        (async () => {
+        document
+        .getElementById(
+            "mealTitleError"
+        )
+        .classList.remove(
+            "hidden"
+        );
 
-         try {
-     console.log("Before Organization");
+        mealTitle.focus();
 
-const orgResult =
-    await saveOrganization();
+        return;
+    }
 
-console.log(
-    "Organization Saved:",
-    orgResult
-);
+    showModule(3);
 
-console.log("Before Meal Details");
-
-const mealResult =
-    await saveMealDetails();
-
-console.log(
-    "Meal Details Saved:",
-    mealResult
-);
-
-console.log("After Meal Details");
-    localStorage.removeItem(
-        "canteenData"
-    );
-
-    alert(
-        "Record Saved Successfully"
-    );
-
-    window.location.href =
-        "./index.html";
-
-}
-catch(err){
-
-    console.error(
-        "Save Error:",
-        err
-    );
-
+    return;
 }
 
-        })();
+if(currentModule === 3){
+
+    const employeeId =
+    document.getElementById(
+        "employeeId"
+    );
+
+    const consumptionDate =
+    document.getElementById(
+        "consumptionDate"
+    );
+
+    const mealConsumed =
+    document.getElementById(
+        "mealConsumed"
+    );
+
+    const numberOfTimes =
+    document.getElementById(
+        "numberOfTimes"
+    );
+
+    if(employeeId.value.trim() === ""){
+        employeeId.classList.add("border-red-500");
+        employeeId.focus();
+        return;
+    }
+
+    if(consumptionDate.value === ""){
+        consumptionDate.classList.add("border-red-500");
+        consumptionDate.focus();
+        return;
+    }
+
+    if(mealConsumed.value.trim() === ""){
+        mealConsumed.classList.add("border-red-500");
+        mealConsumed.focus();
+        return;
+    }
+
+    if(numberOfTimes.value === ""){
+        numberOfTimes.classList.add("border-red-500");
+        numberOfTimes.focus();
+        return;
+    }
+
+    showModule(4);
+
+    return;
+}
+
+if(currentModule === 4){
+
+    const specialDay =
+    document.getElementById(
+        "specialDay"
+    );
+
+    const specialDate =
+    document.getElementById(
+        "specialDate"
+    );
+
+    if(
+        specialDay.value.trim() === ""
+    ){
+
+        specialDay.classList.add(
+            "border-red-500"
+        );
+
+        specialDay.focus();
+
+        return;
+    }
+
+    if(
+        specialDate.value === ""
+    ){
+
+        specialDate.classList.add(
+            "border-red-500"
+        );
+
+        specialDate.focus();
+
+        return;
+    }
+}
+
+// SAVE LOGIC
+
+(async () => {
+
+    try {
+
+
+        console.log("Saving Record...");
+        await saveOrganization();
+
+        await saveMealDetails();
+        console.log("Record Saved");
+
+        localStorage.removeItem(
+            "canteenData"
+        );
+
+        alert(
+            "Record Saved Successfully"
+        );
+
+        window.location.href =
+            "./index.html";
+
+    }
+    catch(err){
+
+        console.error(
+            "Save Error:",
+            err
+        );
 
     }
 
-});
-
+})();
+}); // <-- VERY IMPORTANT
 
     // ===============================
 // DYNAMIC FORM DATA COLLECTION
@@ -509,6 +673,15 @@ if(!record) return;
         canteenData.mealDetails =
         record.mealDetails || {};
 
+        canteenData.mealConfig =
+        record.mealConfig || {};
+
+        canteenData.employeeConsumption =
+        record.employeeConsumption || {};
+
+        canteenData.specialDays =
+        record.specialDays || {};
+
         populateForm();
 
     }
@@ -626,7 +799,10 @@ async function saveOrganization() {
     return record;
 }
 
+
 async function saveMealDetails(){
+
+  
 
     let records =
     JSON.parse(
@@ -648,6 +824,15 @@ async function saveMealDetails(){
         records[index].mealDetails =
         canteenData.mealDetails;
 
+        records[index].mealConfig =
+        canteenData.mealConfig;
+
+        records[index].employeeConsumption =
+        canteenData.employeeConsumption;
+
+        records[index].specialDays =
+        canteenData.specialDays;
+
         localStorage.setItem(
             "canteenRecords",
             JSON.stringify(records)
@@ -657,7 +842,48 @@ async function saveMealDetails(){
 
     return true;
 }
+function setupRequiredFieldValidation(){
 
+    [
+        "organizationCode",
+        "subsidiaryCode",
+        "locationCode",
+        "mealTitle",
+        "employeeId",
+        "consumptionDate",
+        "mealConsumed",
+        "numberOfTimes",
+        "specialDay",
+        "specialDate"
+    ].forEach(id => {
+
+        const field =
+        document.getElementById(id);
+
+        if(!field) return;
+
+        field.addEventListener(
+            "input",
+            function(){
+
+                if(
+                    this.value.trim() !== ""
+                ){
+
+                    this.classList.remove(
+                        "border-red-500"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+}
+
+setupRequiredFieldValidation();
 showModule(0);
 
 })();

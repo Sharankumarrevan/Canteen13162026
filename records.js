@@ -17,7 +17,7 @@ JSON.parse(
 ) || [];
 
 allRecords = data;
-
+console.log(data);
 renderTable(data);
 
     }
@@ -68,7 +68,7 @@ ${record.location?.locationName || "-"}
 </td>
 
 <td class="py-3 px-4">
--
+${record.mealDetails?.mealTitle || "-"}
 </td>
 
 <td class="py-3 px-4">
@@ -148,109 +148,145 @@ async function deleteRecord(id){
     loadRecords();
 }
 
-async function viewRecord(id){
-
-    try{
+async function viewRecord(id) {
+    try {
 
         const records =
-        JSON.parse(
-            localStorage.getItem(
-                "canteenRecords"
-            )
-        ) || [];
+            JSON.parse(
+                localStorage.getItem("canteenRecords")
+            ) || [];
 
         const record =
-        records.find(
-            r => r._id === id
-        );
+            records.find(r => r._id === id);
 
-        if(!record) return;
+        if (!record) return;
 
         const canteen = record;
+        const meal = record.mealDetails || {};
+        const mealConfig = record.mealConfig || {};
+        const employeeConsumption =
+            record.employeeConsumption || {};
+        const specialDays =
+            record.specialDays || {};
 
-        const meal =
-        record.mealDetails || {};
+        document.getElementById("modalContent").innerHTML = `
 
-        document.getElementById(
-            "modalContent"
-        ).innerHTML = `
+        <div class="space-y-4">
 
-        <div class="space-y-3">
-
-            <h3 class="font-bold text-lg">
+            <h3 class="font-bold text-lg border-b pb-2">
                 Organization Details
             </h3>
 
-            <p>
-                <strong>Organization Code:</strong>
+            <p><strong>Organization Code:</strong>
                 ${canteen.organization?.organizationCode || "-"}
             </p>
 
-            <p>
-                <strong>Organization Name:</strong>
+            <p><strong>Organization Name:</strong>
                 ${canteen.organization?.organizationName || "-"}
             </p>
 
-            <p>
-                <strong>Subsidiary:</strong>
+            <p><strong>Subsidiary:</strong>
                 ${canteen.subsidiary?.subsidiaryName || "-"}
             </p>
 
-            <p>
-                <strong>Location:</strong>
+            <p><strong>Location:</strong>
                 ${canteen.location?.locationName || "-"}
             </p>
 
             <hr>
 
-            <h3 class="font-bold text-lg">
+            <h3 class="font-bold text-lg border-b pb-2">
                 Meal Details
             </h3>
 
-            <p>
-                <strong>Meal Title:</strong>
+            <p><strong>Meal Title:</strong>
                 ${meal.mealTitle || "-"}
             </p>
 
-            <p>
-                <strong>From Time:</strong>
-                ${meal.fromTime || "-"}
-            </p>
-
-            <p>
-                <strong>To Time:</strong>
-                ${meal.toTime || "-"}
-            </p>
-
-            <p>
-                <strong>Rate:</strong>
-                ${meal.rate || "-"}
-            </p>
-
-            <p>
-                <strong>Subsidy %:</strong>
-                ${meal.subsidyPercentage || "-"}
-            </p>
-
-            <p>
-                <strong>Meals Served:</strong>
+            <p><strong>Meals Served:</strong>
                 ${meal.mealsServed || "-"}
+            </p>
+
+            <hr>
+
+            <h3 class="font-bold text-lg border-b pb-2">
+                Meal Configuration
+            </h3>
+
+            <p><strong>Day Of Week:</strong>
+                ${mealConfig.dayOfWeek || "-"}
+            </p>
+
+            <p><strong>Meal Title:</strong>
+                ${mealConfig.mealTitle || "-"}
+            </p>
+
+            <p><strong>From Time:</strong>
+                ${mealConfig.fromTime || "-"}
+            </p>
+
+            <p><strong>To Time:</strong>
+                ${mealConfig.toTime || "-"}
+            </p>
+
+            <p><strong>Rate:</strong>
+                ${mealConfig.rate || "-"}
+            </p>
+
+            <p><strong>Subsidy Percentage:</strong>
+                ${mealConfig.subsidyPercentage || "-"}
+            </p>
+
+            <p><strong>Meals Served:</strong>
+                ${mealConfig.mealsServed || "-"}
+            </p>
+
+            <hr>
+
+            <h3 class="font-bold text-lg border-b pb-2">
+                Employee Meals Consumption
+            </h3>
+
+            <p><strong>Employee ID:</strong>
+                ${employeeConsumption.employeeId || "-"}
+            </p>
+
+            <p><strong>Consumption Date:</strong>
+                ${employeeConsumption.consumptionDate || "-"}
+            </p>
+
+            <p><strong>Meal Consumed:</strong>
+                ${employeeConsumption.mealConsumed || "-"}
+            </p>
+
+            <p><strong>Number Of Times:</strong>
+                ${employeeConsumption.numberOfTimes || "-"}
+            </p>
+
+            <hr>
+
+            <h3 class="font-bold text-lg border-b pb-2">
+                Special Days
+            </h3>
+
+            <p><strong>Special Day:</strong>
+                ${specialDays.specialDay || "-"}
+            </p>
+
+            <p><strong>Special Date:</strong>
+                ${specialDays.specialDate || "-"}
             </p>
 
         </div>
         `;
 
         document
-        .getElementById("viewModal")
-        .classList.remove("hidden");
+            .getElementById("viewModal")
+            .classList.remove("hidden");
 
+    } catch (err) {
+        console.error("View Record Error:", err);
     }
-    catch(err){
-
-        console.error(err);
-
-    }
-
 }
 
 document
@@ -262,12 +298,14 @@ document
     () => {
 
         document
-        .getElementById(
-            "viewModal"
-        )
-        .classList.add(
-            "hidden"
-        );
+    .getElementById("closeModal")
+    .addEventListener("click", () => {
+
+        document
+            .getElementById("viewModal")
+            .classList.add("hidden");
+
+    });
 
     }
 );

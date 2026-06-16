@@ -104,12 +104,25 @@
 
             <a id="top-canteen"
               class="text-sm font-normal py-2 border-b-2 text-gray-900 hover:text-blue-600 border-transparent px-2 inline-flex items-center gap-1">
-              Canteen
+              Canteen Meals
+            </a>
+
+            <a id="top-canteen-data"
+              class="text-sm font-normal py-2 border-b-2 text-gray-900 hover:text-blue-600 border-transparent px-2 inline-flex items-center gap-1">
+              Canteen Meals details
+            </a>
+
+            <a id="top-employee"
+              class="text-sm font-normal py-2 border-b-2 text-gray-900 hover:text-blue-600 border-transparent px-2 inline-flex items-center gap-1">
+              Employee Meals Consumption
+            </a>
+
+            <a id="top-special-days"
+              class="text-sm font-normal py-2 border-b-2 text-gray-900 hover:text-blue-600 border-transparent px-2 inline-flex items-center gap-1">
+              Special Days
             </a>
 
           </nav>
-
-
 
           <!-- PAGE CONTENT -->
           <div class="overflow-y-auto h-full">
@@ -176,6 +189,28 @@
                         </button>
                       </nav>
 
+                      <!-- CANTEEN MEALS DETAILS -->
+                      <nav id="canteen-sidebar-data" class="p-4 space-y-3 hidden">
+                        <button data-module="2"
+                          class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium bg-blue-100 text-blue-900">
+                          📋 Canteen Meals Details
+                        </button>
+                      </nav>
+                      <!-- EMPLOYEE MEALS CONSUMPTION -->
+                      <nav id="employee-sidebar" class="p-4 space-y-3 hidden">
+                        <button data-module="3"
+                          class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium bg-blue-100 text-blue-900">
+                          👥 Employee Meals Consumption
+                        </button>
+                      </nav>
+                      <!-- SPECIAL DAYS -->
+                      <nav id="special-days-sidebar" class="p-4 space-y-3 hidden">
+                        <button data-module="4"
+                          class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium bg-blue-100 text-blue-900">
+                          📅 Special Days
+                        </button>
+                      </nav>
+
                     </aside>
 
                   </div>
@@ -185,7 +220,7 @@
 
                     <div class="pt-4 pb-4">
 
-      <div id="module-0" class="module">
+                     <div id="module-0" class="module">
 
   <div class="rounded-lg bg-white border border-slate-200 shadow-sm">
 
@@ -211,6 +246,7 @@
 
       <label class="text-sm font-medium text-slate-700">
         Organization Code
+        <span class="text-red-500">*</span>
       </label>
 
       <input
@@ -245,6 +281,7 @@
 
       <label class="text-sm font-medium text-slate-700">
         Subsidiary Code
+        <span class="text-red-500">*</span>
       </label>
 
       <input
@@ -279,6 +316,7 @@
 
       <label class="text-sm font-medium text-slate-700">
         Location Code
+        <span class="text-red-500">*</span>
       </label>
 
       <input
@@ -318,10 +356,10 @@
 
   </div>
 
-</div>
+                     </div>
 
 
-                                              <!-- MODULE 3: only one visible at a time -->
+                      <!-- MODULE 1: meal title -->
                       <div id="module-1" class="module hidden">
 
                         <!-- CARD -->
@@ -349,27 +387,21 @@
                           <div class="p-6">
 
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-
-                              <div>
-
-                                <label class="text-sm font-medium text-slate-700">
-                                  Meal Title
-                                </label>
-
-                                <select 
-                                  id="mealTitle"
-                                  data-section="mealDetails"
-                                  data-field="mealTitle"
-                                  class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
-
-                                  <option>Breakfast</option>
-                                  <option>Lunch</option>
-                                  <option>Dinner</option>
-
-                                </select>
-
-                              </div>
-
+                            <div>
+                              <label class="text-sm font-medium text-slate-700">
+                                Meal Title 
+                                <span class="text-red-500">*</span>
+                             </label>
+ 
+                              <input
+                               id="mealTitle"
+                                data-section="mealDetails"
+                                data-field="mealTitle"
+                               type="text"
+                                placeholder="Breakfast"
+                                class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2" />
+                            </div>
+<!-- 
                               <div>
 
                                 <label class="text-sm font-medium text-slate-700">
@@ -452,7 +484,7 @@
 
                                 </select>
 
-                              </div>
+                              </div> -->
 
                             </div>
 
@@ -485,6 +517,413 @@
                         </div>
 
                       </div>
+
+                      <div id="module-2" class="module hidden">
+
+<div class="rounded-lg bg-white border border-slate-200 shadow-sm">
+
+    <!-- HEADER -->
+
+    <div class="border-b border-slate-200 px-6 py-4">
+
+        <h2 class="text-lg font-semibold text-slate-900">
+            Add Meal Details
+        </h2>
+
+        <p class="text-sm text-slate-500">
+            Configure meals served in the canteen
+        </p>
+
+    </div>
+
+    <!-- FORM -->
+
+    <div class="p-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <!-- Day Of Week -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    Day Of Week
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <select
+                    id="dayOfWeek"
+                    data-section="mealConfig"
+                    data-field="dayOfWeek"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+                    <option value="">
+                        Select Day
+                    </option>
+
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
+
+                </select>
+
+            </div>
+
+            <!-- Meal Title -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    Meal Title
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <input
+                    id="mealTitle2"
+                    data-section="mealConfig"
+                    data-field="mealTitle"
+                    type="text"
+                    placeholder="Breakfast"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+                <p
+                    id="mealTitleError"
+                    class="hidden text-red-500 text-xs mt-1">
+
+                    Meal Title is required
+
+                </p>
+
+            </div>
+
+            <!-- From Time -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    From Time
+                </label>
+
+                <input
+                    id ="fromTime"
+                    type="time"
+                    data-section="mealConfig"
+                    data-field="fromTime"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+            <!-- To Time -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    To Time
+                </label>
+
+                <input
+                    type="time"
+                    id="toTime"
+                    data-section="mealConfig"
+                    data-field="toTime"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+            <!-- Rate -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    Rate
+                </label>
+
+                <input
+                    id="rate"
+                    type="number"
+                    data-section="mealConfig"
+                    data-field="rate"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+            <!-- Subsidy -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    Subsidy Percentage
+                </label>
+
+                <input
+                    id="subsidyPercentage"
+                    type="number"
+                    data-section="mealConfig"
+                    data-field="subsidyPercentage"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+        </div>
+
+        <!-- Meals Served -->
+
+        <div class="mt-5">
+
+            <label class="text-sm font-medium text-slate-700">
+                Meals Served
+            </label>
+
+            <textarea
+                rows="4"
+                data-section="mealConfig"
+                data-field="mealsServed"
+                placeholder="Idli, Dosa, Rice, Sambhar"
+                class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-3"></textarea>
+
+        </div>
+
+    </div>
+
+    <!-- CARD SAVE -->
+
+    <div class="border-t px-6 py-4 flex justify-end">
+
+        <button
+            id="mealConfigSave"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm">
+
+            Save
+
+        </button>
+
+    </div>
+
+</div>
+
+                      </div>
+                         
+                      <div id="module-3" class="module hidden">
+
+<div class="rounded-lg bg-white border border-slate-200 shadow-sm">
+
+    <div class="border-b border-slate-200 px-6 py-4">
+
+        <h2 class="text-lg font-semibold text-slate-900">
+            Employee Meals Consumption
+        </h2>
+
+        <p class="text-sm text-slate-500">
+            Track employee meal consumption details
+        </p>
+
+    </div>
+
+    <div class="p-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <!-- Employee ID -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    Employee ID
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <input
+                    id="employeeId"
+                    data-section="employeeConsumption"
+                    data-field="employeeId"
+                    type="text"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+                <p
+                    id="employeeIdError"
+                    class="hidden text-red-500 text-xs mt-1">
+
+                    Employee ID is required
+
+                </p>
+
+            </div>
+
+            <!-- Date -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    Date
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <input
+                    id="consumptionDate"
+                    data-section="employeeConsumption"
+                    data-field="date"
+                    type="date"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+            <!-- Meal Consumed -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    Meal Consumed
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <input
+                    id="mealConsumed"
+                    data-section="employeeConsumption"
+                    data-field="mealConsumed"
+                    type="text"
+                    placeholder="Breakfast"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+            <!-- No Of Times -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+                    No Of Times
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <input
+                    id="numberOfTimes"
+                    data-section="employeeConsumption"
+                    data-field="numberOfTimes"
+                    type="number"
+                    min="1"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="border-t px-6 py-4 flex justify-end">
+
+        <button
+            id="employeeConsumptionSave"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm">
+
+            Save
+
+        </button>
+
+    </div>
+
+</div>
+
+                      </div>
+
+                      <div id="module-4" class="module hidden">
+
+<div class="rounded-lg bg-white border border-slate-200 shadow-sm">
+
+    <div class="border-b border-slate-200 px-6 py-4">
+
+        <h2 class="text-lg font-semibold text-slate-900">
+
+            Special Days
+
+        </h2>
+
+        <p class="text-sm text-slate-500">
+
+            Configure special canteen days
+
+        </p>
+
+    </div>
+
+    <div class="p-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <!-- Day -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+
+                    Day
+
+                    <span class="text-red-500">*</span>
+
+                </label>
+
+                <input
+                    id="specialDay"
+                    data-section="specialDays"
+                    data-field="day"
+                    type="text"
+                    placeholder="Independence Day"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+                <p
+                    id="specialDayError"
+                    class="hidden text-red-500 text-xs mt-1">
+
+                    Day is required
+
+                </p>
+
+            </div>
+
+            <!-- Date -->
+
+            <div>
+
+                <label class="text-sm font-medium text-slate-700">
+
+                    Date
+
+                    <span class="text-red-500">*</span>
+
+                </label>
+
+                <input
+                    id="specialDate"
+                    data-section="specialDays"
+                    data-field="date"
+                    type="date"
+                    class="mt-2 w-full border border-slate-300 rounded-lg px-4 py-2">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="border-t px-6 py-4 flex justify-end">
+
+        <button
+            id="specialDaysSave"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm">
+
+            Save
+
+        </button>
+
+    </div>
+
+</div>
+
+                      </div>
+                      
 
                     
                       <!-- Bottom navigation: Back (left), Save Details and Continue (right) -->

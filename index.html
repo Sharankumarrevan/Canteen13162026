@@ -164,9 +164,6 @@
             class="py-3  pl-6 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-600 ">
                 Actions
             </th>
-
-
-
         </tr>
 
     </thead>
@@ -227,33 +224,19 @@ class="flex items-center justify-between px-4 py-3 border-t border-gray-200 bg-g
 
 <!-- View Modal -->
 
-<div
-id="viewModal"
-class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+<div id="viewModal"
+     class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 
-    <div class="bg-white w-11/12 max-w-4xl rounded-xl">
+    <div
+        class="bg-white w-11/12 md:w-3/4 lg:w-2/3 rounded-lg p-6 relative max-h-[90vh] overflow-y-auto">
 
-        <div class="flex justify-between items-center border-b p-4">
+        <button
+            id="closeModal"
+            class="absolute top-3 right-4 text-3xl font-bold text-red-500 hover:text-red-700">
+            &times;
+        </button>
 
-            <h2 class="font-semibold text-xl">
-                Record Details
-            </h2>
-
-            <button
-                id="closeModal"
-                class="text-red-500 text-xl">
-
-                ✕
-
-            </button>
-
-        </div>
-
-        <div
-            id="modalContent"
-            class="p-6">
-
-        </div>
+        <div id="modalContent"></div>
 
     </div>
 
